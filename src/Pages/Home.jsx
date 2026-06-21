@@ -19,6 +19,31 @@ function Home() {
 
       {/* Categories section */}
 
+      <div>
+        <h1 className="py-10 px-6 text-center">Popular Categories</h1>
+
+        <div className="grid grid-cols-3 gap-4 max-w-3xl mx-auto">
+          <div className="border rounded-lg p-4 cursor-pointer hover:bg-blue-50">
+            IT
+          </div>
+          <div className="border rounded-lg p-4 cursor-pointer hover:bg-blue-50">
+            Design
+          </div>
+          <div className="border rounded-lg p-4 cursor-pointer hover:bg-blue-50">
+            Marketing
+          </div>
+          <div className="border rounded-lg p-4 cursor-pointer hover:bg-blue-50">
+            Sales
+          </div>
+          <div className="border rounded-lg p-4 cursor-pointer hover:bg-blue-50">
+            HR
+          </div>
+          <div className="border rounded-lg p-4 cursor-pointer hover:bg-blue-50">
+            Financial
+          </div>
+        </div>
+      </div>
+
       {/* Recent job section */}
     </div>
   );
