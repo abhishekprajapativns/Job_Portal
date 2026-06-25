@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 function Register() {
-  const [phone, setPhone] = useState("+91");
+  const [phone, setPhone] = useState("+91 ");
 
   return (
     <div className="max-w-sm mx-auto mt-20 p-6 border rounded-lg shadow-md">
@@ -30,10 +30,14 @@ function Register() {
 
       <input
         value={phone}
-        onChange={(e) => setPhone(e.target.value)}
+        onChange={(e) => {
+          if (e.target.value.startsWith("+91 ")) {
+            setPhone(e.target.value);
+          }
+        }}
         className="w-full border px-3 py-2 rounded-lg mb-3 outline-none"
         type="tel"
-        maxLength={13}
+        maxLength={14}
         placeholder="+91 Phone Number"
       />
 
