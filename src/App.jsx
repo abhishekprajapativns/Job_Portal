@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
+import FindJob from "./Pages/Findjob";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/findjobs" element={<FindJob />} />
       </Routes>
     </BrowserRouter>
   );
