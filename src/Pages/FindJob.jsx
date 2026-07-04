@@ -43,7 +43,7 @@ function FindJob() {
               <h2 className="text-lg font-bold">{job.title}</h2>
               <p className="text-gray-500">{job.company}</p>
               <p className="text-gray-500">{job.location}</p>
-              <button className="bg-blue-600 text-white px-4 py-2 rounded-lg mt-2">
+              <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg mt-2 cursor-pointer">
                 Apply
               </button>
             </div>
