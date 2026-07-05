@@ -1,7 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 
 function Login() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -16,6 +18,7 @@ function Login() {
 
       localStorage.setItem("token", res.data.token);
       alert(res.data.message);
+      navigate("/dashboard");
     } catch (error) {
       alert(error.response.data.message);
     }
