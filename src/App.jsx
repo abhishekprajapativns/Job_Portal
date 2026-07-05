@@ -4,6 +4,7 @@ import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import FindJob from "./Pages/Findjob";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/findjobs" element={<FindJob />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }
