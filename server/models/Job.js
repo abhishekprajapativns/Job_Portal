@@ -7,6 +7,11 @@ const jobSchema = new mongoose.Schema({
   salary: String,
   description: String,
   jobType: String,
+  skills: [String],
+  postedBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
 });
 
 const Job = mongoose.model("Job", jobSchema);
