@@ -6,6 +6,7 @@ import Register from "./Pages/Register";
 import FindJob from "./Pages/Findjob";
 import Footer from "./components/Footer";
 import Dashboard from "./Pages/Dashboard";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -16,7 +17,14 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/findjobs" element={<FindJob />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
       <Footer />
     </BrowserRouter>
