@@ -1,7 +1,10 @@
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 
 function Register() {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -17,6 +20,7 @@ function Register() {
         formData,
       );
       alert(res.data.message);
+      navigate("/login");
     } catch (error) {
       alert(error.response.data.message);
     }
@@ -79,6 +83,14 @@ function Register() {
       >
         Register
       </button>
+
+      <p className="text-center mt-3 text-sm">
+        Already have an account?
+        <Link to="/login" className="text-blue-600">
+          {" "}
+          Login here
+        </Link>
+      </p>
     </div>
   );
 }
