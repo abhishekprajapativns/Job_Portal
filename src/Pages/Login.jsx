@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 
@@ -50,6 +50,14 @@ function Login() {
       >
         Login
       </button>
+
+      <p className="text-center mt-3 text-sm">
+        Don't have an account?
+        <Link to="/register" className="text-blue-600">
+          {" "}
+          Register here
+        </Link>
+      </p>
     </div>
   );
 }
