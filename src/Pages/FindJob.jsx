@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 
 function FindJob() {
   const [jobs, setjobs] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     axios
@@ -11,6 +12,10 @@ function FindJob() {
       .catch((err) => console.log(err));
   }, []);
 
+  const filteredJobs = jobs.filter((job) =>
+    job.title.toLowerCase().includes(search.toLowerCase()),
+  );
+
   return (
     <div className="p-6">
       {/* Search bar */}
@@ -18,6 +23,8 @@ function FindJob() {
         className="w-full border px-3 py-2 rounded-lg mb-4 outline-none"
         type="text"
         placeholder="Search jobs"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
       />
 
       {/* Main Content */}
@@ -38,7 +45,7 @@ function FindJob() {
         {/* Job Cards - Right */}
 
         <div className="w-3/4">
-          {jobs.map((job) => (
+          {filteredJobs.map((job) => (
             <div key={job._id} className="border rounded-lg p-4 shadow-sm mb-3">
               <h2 className="text-lg font-bold">{job.title}</h2>
               <p className="text-gray-500">{job.company}</p>
