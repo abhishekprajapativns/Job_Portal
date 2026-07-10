@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 function FindJob() {
   const [jobs, setjobs] = useState([]);
   const [search, setSearch] = useState("");
+  const [jobType, setJobType] = useState("");
 
   useEffect(() => {
     axios
@@ -12,9 +13,13 @@ function FindJob() {
       .catch((err) => console.log(err));
   }, []);
 
-  const filteredJobs = jobs.filter((job) =>
-    job.title.toLowerCase().includes(search.toLowerCase()),
-  );
+  const filteredJobs = jobs.filter((job) => {
+    const matchesSearch = job.title
+      .toLowerCase()
+      .includes(search.toLowerCase());
+    const matchesType = jobType === "" || job.jobType === jobType;
+    return matchesSearch && matchesType;
+  });
 
   return (
     <div className="p-6">
@@ -33,13 +38,38 @@ function FindJob() {
         {/* Filter Side - Left */}
 
         <div className="w-1/4 border rounded-lg p-4">
-          <h3>Job Type</h3>
-          <input type="checkbox" />
-          Full Time
-          <input type="checkbox" /> Part Time
-          <h3>Location</h3>
-          <input type="checkbox" /> Remote
-          <input type="checkbox" /> On-Site
+          <h3 className="font-bold mb-2">Job Type</h3>
+
+          <label className="flex items-center gap-2 mb-2">
+            <input
+              type="checkbox"
+              checked={jobType === "Full Time"}
+              onChange={() =>
+                setJobType(jobType === "Full Time" ? "" : "Full Time")
+              }
+            />
+            Full Time
+          </label>
+
+          <label className="flex items-center gap-2 mb-2">
+            <input
+              type="checkbox"
+              checked={jobType === "Part Time"}
+              onChange={() =>
+                setJobType(jobType === "Part Time" ? "" : "Part Time")
+              }
+            />
+            Part Time
+          </label>
+
+          <h3 className="font-bold mb-2 mt-4">Location</h3>
+
+          <label className="flex items-center gap-2 mb-2">
+            <input type="checkbox" /> Remote
+          </label>
+          <label className="flex items-center gap-2 mb-2">
+            <input type="checkbox" /> On-Site
+          </label>
         </div>
 
         {/* Job Cards - Right */}
