@@ -1,4 +1,10 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 function Home() {
+  const navigate = useNavigate();
+  const [search, setSearch] = useState("");
+
   return (
     <div>
       {/* Hero Section */}
@@ -10,9 +16,14 @@ function Home() {
           className="px-4 py-2 rounded-l-lg w-80 text-black outline-none"
           type="text"
           placeholder="Search from thousands of jobs"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
         />
 
-        <button className="bg-yellow-400 text-black px-6 py-2 rounded-r-lg font-bold">
+        <button
+          onClick={() => navigate(`/findjobs?search=${search}`)}
+          className="bg-yellow-400 text-black px-6 py-2 rounded-r-lg font-bold"
+        >
           Search
         </button>
       </div>
