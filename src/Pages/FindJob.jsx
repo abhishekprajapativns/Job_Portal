@@ -1,13 +1,16 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 
 function FindJob() {
   const [jobs, setjobs] = useState([]);
-  const [search, setSearch] = useState("");
   const [jobType, setJobType] = useState("");
+  const [searchParams] = useSearchParams();
+  const [search, setSearch] = useState(searchParams.get("search") || "");
 
   useEffect(() => {
     axios
+
       .get("http://localhost:5000/api/jobs")
       .then((res) => setjobs(res.data))
       .catch((err) => console.log(err));
