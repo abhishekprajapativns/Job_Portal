@@ -7,6 +7,7 @@ import FindJob from "./Pages/Findjob";
 import Footer from "./components/Footer";
 import Dashboard from "./Pages/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
+import JobDetail from "./Pages/JobDetail";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route path="/job/:id" element={<JobDetail />} />
       </Routes>
       <Footer />
     </BrowserRouter>
