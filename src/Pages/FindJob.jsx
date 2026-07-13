@@ -1,16 +1,16 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 
 function FindJob() {
   const [jobs, setjobs] = useState([]);
   const [jobType, setJobType] = useState("");
   const [searchParams] = useSearchParams();
   const [search, setSearch] = useState(searchParams.get("search") || "");
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
-
       .get("http://localhost:5000/api/jobs")
       .then((res) => setjobs(res.data))
       .catch((err) => console.log(err));
@@ -79,7 +79,11 @@ function FindJob() {
 
         <div className="w-3/4">
           {filteredJobs.map((job) => (
-            <div key={job._id} className="border rounded-lg p-4 shadow-sm mb-3">
+            <div
+              key={job._id}
+              onClick={() => navigate("/job/" + job._id)}
+              className="border rounded-lg p-4 shadow-sm mb-3 cursor-pointer"
+            >
               <h2 className="text-lg font-bold">{job.title}</h2>
               <p className="text-gray-500">{job.company}</p>
               <p className="text-gray-500">{job.location}</p>
