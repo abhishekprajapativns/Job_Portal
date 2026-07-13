@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -17,6 +17,9 @@ function JobDetail() {
     <div className="max-w-2xl mx-auto mt-10 p-6 border rounded-lg shadow-md">
       {job ? (
         <div>
+          <Link to="/findjobs" className="text-blue-600 mb-4 inline-block">
+            ← Back to Jobs
+          </Link>
           <h1 className="text-2xl font-bold mb-2">{job.title}</h1>
           <p className="text-gray-500">{job.company}</p>
           <p className="text-gray-500">{job.location}</p>
