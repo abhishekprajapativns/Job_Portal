@@ -13,6 +13,17 @@ function JobDetail() {
       .catch((err) => console.log(err));
   }, [id]);
 
+  const handleApply = () => {
+    axios
+      .post("http://localhost:5000/api/applications", {
+        jobId: id,
+        name: "Rahul Sharma",
+        email: "rahul@gmail.com",
+      })
+      .then((res) => alert(res.data.message))
+      .catch((err) => alert("Error applying"));
+  };
+
   return (
     <div className="max-w-2xl mx-auto mt-10 p-6 border rounded-lg shadow-md">
       {job ? (
@@ -26,7 +37,11 @@ function JobDetail() {
           <p className="text-gray-500">{job.jobType}</p>
           <p className="text-blue-600 font-semibold mt-2">{job.salary}</p>
           <p className="mt-4 text-gray-700">{job.description}</p>
-          <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg mt-4 cursor-pointer">
+
+          <button
+            onClick={handleApply}
+            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg mt-4 cursor-pointer"
+          >
             Apply Now
           </button>
         </div>
