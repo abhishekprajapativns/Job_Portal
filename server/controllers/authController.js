@@ -5,9 +5,9 @@ const jwt = require("jsonwebtoken");
 /* Register User */
 
 const registerUser = async (req, res) => {
-  const { firstName, lastName, email, phone, password } = req.body;
+  const { firstName, lastName, email, phone, password, role } = req.body;
 
-  console.log(firstName, lastName, email, phone, password);
+  console.log(firstName, lastName, email, phone, password, role);
 
   const existingUser = await User.findOne({ email });
 
@@ -23,7 +23,7 @@ const registerUser = async (req, res) => {
     email,
     phone,
     password: hashedPassword,
-    role: "candidate",
+    role,
   });
 
   await user.save();
