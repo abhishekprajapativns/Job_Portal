@@ -11,6 +11,7 @@ function Register() {
     email: "",
     phone: "+91 ",
     password: "",
+    role: "candidate",
   });
 
   const handleRegister = async () => {
@@ -76,6 +77,15 @@ function Register() {
         maxLength={14}
         placeholder="+91 Phone Number"
       />
+
+      <select
+        className="w-full border px-3 py-2 rounded-lg mb-3 outline-none"
+        value={formData.role}
+        onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+      >
+        <option value="candidate">Candidate</option>
+        <option value="recruiter">Recruiter</option>
+      </select>
 
       <button
         onClick={handleRegister}
