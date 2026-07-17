@@ -17,8 +17,14 @@ function Login() {
       );
 
       localStorage.setItem("token", res.data.token);
+      localStorage.setItem("role", res.data.role);
       alert(res.data.message);
-      navigate("/dashboard");
+
+      if (res.data.role === "recruiter") {
+        navigate("/recruiter-dashboard");
+      } else {
+        navigate("/dashboard");
+      }
     } catch (error) {
       alert(error.response.data.message);
     }
