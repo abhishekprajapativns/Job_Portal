@@ -8,6 +8,7 @@ import Footer from "./components/Footer";
 import Dashboard from "./Pages/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
 import JobDetail from "./Pages/JobDetail";
+import RecruiterDashboard from "./Pages/RecruiterDashboard";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           }
         />
         <Route path="/job/:id" element={<JobDetail />} />
+        <Route path="/recruiter-dashboard" element={<RecruiterDashboard />} />
       </Routes>
       <Footer />
     </BrowserRouter>
