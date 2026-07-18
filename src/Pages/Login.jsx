@@ -21,9 +21,9 @@ function Login() {
       alert(res.data.message);
 
       if (res.data.role === "recruiter") {
-        navigate("/recruiter-dashboard");
+        window.location.href = "/recruiter-dashboard";
       } else {
-        navigate("/dashboard");
+        window.location.href = "/dashboard";
       }
     } catch (error) {
       alert(error.response.data.message);
