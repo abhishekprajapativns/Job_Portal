@@ -9,6 +9,7 @@ import Dashboard from "./Pages/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
 import JobDetail from "./Pages/JobDetail";
 import RecruiterDashboard from "./Pages/RecruiterDashboard";
+import Postjob from "./Pages/PostJob";
 
 function App() {
   return (
@@ -29,7 +30,9 @@ function App() {
         />
         <Route path="/job/:id" element={<JobDetail />} />
         <Route path="/recruiter-dashboard" element={<RecruiterDashboard />} />
+        <Route path="/post-job" element={<Postjob />} />
       </Routes>
+
       <Footer />
     </BrowserRouter>
   );
