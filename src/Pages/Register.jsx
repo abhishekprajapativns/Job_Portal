@@ -15,6 +15,17 @@ function Register() {
   });
 
   const handleRegister = async () => {
+    if (
+      !formData.firstName ||
+      !formData.lastName ||
+      !formData.email ||
+      !formData.password ||
+      !formData.phone
+    ) {
+      alert("Please fill all required fields");
+      return;
+    }
+
     try {
       const res = await axios.post(
         "http://localhost:5000/api/auth/register",
