@@ -10,6 +10,11 @@ function Login() {
   });
 
   const handleLogin = async () => {
+    if (!formData.email || !formData.password) {
+      alert("Please fill all required fields");
+      return;
+    }
+
     try {
       const res = await axios.post(
         "http://localhost:5000/api/auth/login",
