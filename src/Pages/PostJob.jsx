@@ -14,6 +14,11 @@ function Postjob() {
   });
 
   const handlePostJob = async () => {
+    if (!formData.title || !formData.company || !formData.location) {
+      alert("Please fill all required fields");
+      return;
+    }
+
     try {
       const res = await axios.post("http://localhost:5000/api/jobs", formData);
       alert(res.data.message);
