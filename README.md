@@ -1,89 +1,148 @@
-# Job Portal
+# 💼 Job Portal
 
-A full-stack Job Portal web application built using the MERN stack, where candidates can search and apply for jobs, and recruiters can post jobs and manage listings.
+A full-stack Job Portal web application built with the **MERN stack**. The platform allows candidates to search and apply for jobs, while recruiters can create and manage job listings through a role-based authentication system.
 
-## Features
+## 🚀 Features
 
-### Candidate Side
+### 👨‍💼 Candidate
+
 * Secure registration and login using JWT authentication
 * Browse available job listings
 * Search jobs by keywords
-* Filter jobs based on job type and location
-* View detailed job information on a dedicated Job Detail page
+* Filter jobs by job type and location
+* View detailed job information
 * Apply to jobs directly from the platform
-* Dashboard to view profile and applied jobs
+* View profile and applied jobs through the dashboard
 
-### Recruiter Side
-* Register and login as a Recruiter (role-based authentication)
-* Recruiter Dashboard
-* Post new job openings through a simple form
-* Posted jobs instantly appear on the candidate's Find Jobs page
+### 🏢 Recruiter
 
-### Common
-* Role-based redirection after login (Candidate / Recruiter)
-* Password encryption using bcryptjs
-* Responsive UI built with Tailwind CSS
+* Recruiter registration and login
+* Role-based authentication
+* Recruiter dashboard
+* Post new job openings
+* Manage job listings
+* Posted jobs are instantly visible on the candidate's Find Jobs page
 
-## Tech Stack
+### 🔐 Common Features
 
-**Frontend**
+* Role-based authentication and redirection
+* Secure password hashing using `bcryptjs`
+* JWT-based authentication
+* Responsive user interface
+* Modern UI built with Tailwind CSS
+
+## 🛠️ Tech Stack
+
+### Frontend
+
 * React.js
 * React Router DOM
 * Tailwind CSS
 * Axios
 
-**Backend**
+### Backend
+
 * Node.js
 * Express.js
 
-**Database**
-* MongoDB (Mongoose)
+### Database
 
-**Authentication**
+* MongoDB
+* Mongoose
+
+### Authentication & Security
+
 * JSON Web Token (JWT)
 * bcryptjs
 
-## Installation and Setup
+## 📁 Project Structure
 
-### Clone Repository
+```text
+job-portal/
+│
+├── client/          # React frontend
+│
+└── server/          # Node.js + Express backend
+```
 
+## ⚙️ Installation and Setup
+
+### 1. Clone the Repository
+
+```bash
 git clone <repository-url>
 cd job-portal
+```
 
-### Backend Setup
+### 2. Backend Setup
 
+```bash
 cd server
 npm install
 node index.js
+```
 
-### Frontend Setup
+The backend server will start on the configured port.
 
+### 3. Frontend Setup
+
+Open a new terminal:
+
+```bash
+cd client
 npm install
 npm run dev
+```
 
-## API Endpoints
+The frontend will start on the Vite development server.
 
-### Auth
-* POST /api/auth/register - Register new user (candidate or recruiter)
-* POST /api/auth/login - Login user and receive JWT token + role
+## 🔗 API Endpoints
+
+### Authentication
+
+| Method | Endpoint             | Description                               |
+| ------ | -------------------- | ----------------------------------------- |
+| POST   | `/api/auth/register` | Register a new candidate or recruiter     |
+| POST   | `/api/auth/login`    | Login and receive JWT token and user role |
 
 ### Jobs
-* GET /api/jobs - Get all jobs
-* GET /api/jobs/:id - Get a single job by ID
-* POST /api/jobs - Create a new job (recruiter)
+
+| Method | Endpoint        | Description                     |
+| ------ | --------------- | ------------------------------- |
+| GET    | `/api/jobs`     | Get all available jobs          |
+| GET    | `/api/jobs/:id` | Get job details                 |
+| POST   | `/api/jobs`     | Create a new job as a recruiter |
 
 ### Applications
-* POST /api/applications - Apply to a job
 
-## Future Improvements
+| Method | Endpoint            | Description     |
+| ------ | ------------------- | --------------- |
+| POST   | `/api/applications` | Apply for a job |
 
-* Connect Dashboard to show real applied jobs (JWT-protected)
-* Recruiter can view and manage applicants for their posted jobs
+## 🔮 Future Improvements
+
+* JWT-protected candidate and recruiter dashboards
+* Recruiter applicant management system
 * Resume upload functionality
 * Email notifications
-* Admin panel for managing users and jobs
+* Admin panel for managing users and job listings
+* Advanced job search and filtering
+* Pagination for job listings
 
-## Author
+## 🌐 Live Demo
 
-Abhishek Prajapati
+**Live Demo:** Add your deployed project link here
+
+**GitHub Repository:** Add your GitHub repository link here
+
+## 👨‍💻 Author
+
+**Abhishek Prajapati**
+
+Aspiring MERN Stack Developer
+
+## 👨‍💻 Author
+
+**Abhishek Prajapati**
+
 Aspiring MERN Stack Developer
