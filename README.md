@@ -60,9 +60,16 @@ A full-stack Job Portal web application built with the **MERN stack**. The platf
 ```text
 job-portal/
 │
-├── client/          # React frontend
+├── src/            # React frontend source code
+├── public/         # Static assets
+├── index.html      # Frontend entry point
 │
-└── server/          # Node.js + Express backend
+└── server/         # Node.js + Express backend
+    ├── config/
+    ├── controllers/
+    ├── middleware/
+    ├── models/
+    └── routes/
 ```
 
 ## ⚙️ Installation and Setup
@@ -70,8 +77,8 @@ job-portal/
 ### 1. Clone the Repository
 
 ```bash
-git clone <repository-url>
-cd job-portal
+git clone https://github.com/abhishekprajapativns/Job_Portal.git
+cd Job_Portal
 ```
 
 ### 2. Backend Setup
@@ -86,10 +93,9 @@ The backend server will start on the configured port.
 
 ### 3. Frontend Setup
 
-Open a new terminal:
+Open a new terminal from the project root:
 
 ```bash
-cd client
 npm install
 npm run dev
 ```
@@ -100,24 +106,24 @@ The frontend will start on the Vite development server.
 
 ### Authentication
 
-| Method | Endpoint             | Description                               |
-| ------ | -------------------- | ----------------------------------------- |
-| POST   | `/api/auth/register` | Register a new candidate or recruiter     |
-| POST   | `/api/auth/login`    | Login and receive JWT token and user role |
+| Method | Endpoint              | Description                                 |
+| ------ | --------------------- | ------------------------------------------- |
+| POST   | `/api/auth/register`  | Register a new candidate or recruiter       |
+| POST   | `/api/auth/login`     | Login and receive JWT token and user role   |
 
 ### Jobs
 
-| Method | Endpoint        | Description                     |
-| ------ | --------------- | ------------------------------- |
-| GET    | `/api/jobs`     | Get all available jobs          |
-| GET    | `/api/jobs/:id` | Get job details                 |
-| POST   | `/api/jobs`     | Create a new job as a recruiter |
+| Method | Endpoint          | Description                        |
+| ------ | ----------------- | ---------------------------------- |
+| GET    | `/api/jobs`       | Get all available jobs             |
+| GET    | `/api/jobs/:id`   | Get job details                    |
+| POST   | `/api/jobs`       | Create a new job as a recruiter    |
 
 ### Applications
 
-| Method | Endpoint            | Description     |
-| ------ | ------------------- | --------------- |
-| POST   | `/api/applications` | Apply for a job |
+| Method | Endpoint              | Description       |
+| ------ | ----------------------| ------------------|
+| POST   | `/api/applications`   | Apply for a job   |
 
 ## 🔮 Future Improvements
 
@@ -131,15 +137,12 @@ The frontend will start on the Vite development server.
 
 ## 🌐 Live Demo
 
-**Backend API:** https://job-portal-1p1h.onrender.com
-**Frontend:** (jab deploy ho jayega, wo URL yahan add karenge)
-
-**GitHub Repository:** Add your GitHub repository link here
+**Backend API:** https://job-portal-1p1h.onrender.com  
+**Frontend:** https://job-portal-morm.vercel.app  
+**GitHub Repository:** https://github.com/abhishekprajapativns/Job_Portal
 
 ## 👨‍💻 Author
 
 **Abhishek Prajapati**
 
 Aspiring MERN Stack Developer
-
-
