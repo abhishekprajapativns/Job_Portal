@@ -3,7 +3,7 @@ import Navbar from "./components/Navbar";
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
-import FindJob from "./Pages/Findjob";
+import FindJob from "./Pages/FindJob";
 import Footer from "./components/Footer";
 import Dashboard from "./Pages/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
