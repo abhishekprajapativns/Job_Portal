@@ -131,7 +131,8 @@ The frontend will start on the Vite development server.
 
 ## 🌐 Live Demo
 
-**Live Demo:** Add your deployed project link here
+**Backend API:** https://job-portal-1p1h.onrender.com
+**Frontend:** (jab deploy ho jayega, wo URL yahan add karenge)
 
 **GitHub Repository:** Add your GitHub repository link here
 
@@ -141,8 +142,4 @@ The frontend will start on the Vite development server.
 
 Aspiring MERN Stack Developer
 
-## 👨‍💻 Author
 
-**Abhishek Prajapati**
-
-Aspiring MERN Stack Developer
