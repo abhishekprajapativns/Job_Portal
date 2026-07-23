@@ -20,7 +20,10 @@ function Postjob() {
     }
 
     try {
-      const res = await axios.post("http://localhost:5000/api/jobs", formData);
+      const res = await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/jobs`,
+        formData,
+      );
       alert(res.data.message);
       navigate("/recruiter-dashboard");
     } catch (error) {
