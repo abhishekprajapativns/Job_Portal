@@ -8,14 +8,14 @@ function JobDetail() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/jobs/${id}`)
+      .get(`${import.meta.env.VITE_API_URL}/api/jobs/${id}`)
       .then((res) => setJob(res.data))
       .catch((err) => console.log(err));
   }, [id]);
 
   const handleApply = () => {
     axios
-      .post("http://localhost:5000/api/applications", {
+      .post(`${import.meta.env.VITE_API_URL}/api/applications`, {
         jobId: id,
         name: "Rahul Sharma",
         email: "rahul@gmail.com",
