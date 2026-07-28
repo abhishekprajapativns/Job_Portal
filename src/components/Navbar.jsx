@@ -12,14 +12,19 @@ function Navbar() {
   };
 
   return (
-    <nav className="bg-blue-600 px-6 py-4 flex justify-between items-center">
-      <div className="text-white text-xl font-bold">JOB-PORTAL</div>
+    <nav className="bg-deep px-6 py-4 flex justify-between items-center">
+      <div className="text-cream font-serif text-xl font-semibold">
+        JOB-PORTAL
+      </div>
 
       <div className="flex gap-6 items-center">
-        <Link className="text-white hover:text-gray-200" to="/">
+        <Link className="text-cream hover:text-gold transition-colors" to="/">
           Home
         </Link>
-        <Link className="text-white hover:text-gray-200" to="/findjobs">
+        <Link
+          className="text-cream hover:text-gold transition-colors"
+          to="/findjobs"
+        >
           Find Job
         </Link>
 
@@ -27,23 +32,23 @@ function Navbar() {
           <div className="relative">
             <button
               onClick={() => setShowDropdown(!showDropdown)}
-              className="text-white hover:text-gray-200 cursor-pointer"
+              className="text-cream hover:text-gold transition-colors cursor-pointer"
             >
               👤 Account
             </button>
 
             {showDropdown ? (
-              <div className="absolute right-0 mt-2 bg-white text-black rounded-lg shadow-md w-40">
+              <div className="absolute right-0 mt-2 bg-cream text-deep rounded shadow-md w-40 border border-parchment">
                 <Link
                   to="/dashboard"
                   onClick={() => setShowDropdown(false)}
-                  className="block px-4 py-2 hover:bg-gray-100"
+                  className="block px-4 py-2 hover:bg-parchment"
                 >
                   Dashboard
                 </Link>
                 <button
                   onClick={handleLogout}
-                  className="block w-full text-left px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                  className="block w-full text-left px-4 py-2 hover:bg-parchment cursor-pointer"
                 >
                   Logout
                 </button>
@@ -52,10 +57,16 @@ function Navbar() {
           </div>
         ) : (
           <>
-            <Link className="text-white hover:text-gray-200" to="/login">
+            <Link
+              className="text-cream hover:text-gold transition-colors"
+              to="/login"
+            >
               Login
             </Link>
-            <Link className="text-white hover:text-gray-200" to="/register">
+            <Link
+              className="bg-gold text-deep px-4 py-1.5 rounded font-semibold hover:bg-goldlight transition-colors"
+              to="/register"
+            >
               Register
             </Link>
           </>
