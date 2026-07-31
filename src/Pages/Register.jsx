@@ -39,79 +39,87 @@ function Register() {
   };
 
   return (
-    <div className="max-w-sm mx-auto mt-20 p-6 border rounded-lg shadow-md">
-      <h1 className="text-2xl font-bold mb-4 text-center">Register</h1>
+    <div className="bg-cream min-h-screen py-16 px-6">
+      <div className="max-w-sm mx-auto bg-white p-8 border border-parchment shadow-sm">
+        <h1 className="font-serif text-2xl font-semibold mb-6 text-center">
+          Register
+        </h1>
 
-      <input
-        className="w-full border px-3 py-2 rounded-lg mb-3 outline-none"
-        type="text"
-        placeholder="First Name"
-        value={formData.firstName}
-        onChange={(e) =>
-          setFormData({ ...formData, firstName: e.target.value })
-        }
-      />
-
-      <input
-        className="w-full border px-3 py-2 rounded-lg mb-3 outline-none"
-        type="text"
-        placeholder="Last Name"
-        value={formData.lastName}
-        onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-      />
-
-      <input
-        className="w-full border px-3 py-2 rounded-lg mb-3 outline-none"
-        type="email"
-        placeholder="Email"
-        value={formData.email}
-        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-      />
-
-      <input
-        className="w-full border px-3 py-2 rounded-lg mb-3 outline-none"
-        type="password"
-        placeholder="Password"
-        value={formData.password}
-        onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-      />
-
-      <input
-        value={formData.phone}
-        onChange={(e) => {
-          if (e.target.value.startsWith("+91 ")) {
-            setFormData({ ...formData, phone: e.target.value });
+        <input
+          className="w-full border border-parchment px-3 py-2 rounded mb-3 outline-none focus:border-deep"
+          type="text"
+          placeholder="First Name"
+          value={formData.firstName}
+          onChange={(e) =>
+            setFormData({ ...formData, firstName: e.target.value })
           }
-        }}
-        className="w-full border px-3 py-2 rounded-lg mb-3 outline-none"
-        type="tel"
-        maxLength={14}
-        placeholder="+91 Phone Number"
-      />
+        />
 
-      <select
-        className="w-full border px-3 py-2 rounded-lg mb-3 outline-none"
-        value={formData.role}
-        onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-      >
-        <option value="candidate">Candidate</option>
-        <option value="recruiter">Recruiter</option>
-      </select>
+        <input
+          className="w-full border border-parchment px-3 py-2 rounded mb-3 outline-none focus:border-deep"
+          type="text"
+          placeholder="Last Name"
+          value={formData.lastName}
+          onChange={(e) =>
+            setFormData({ ...formData, lastName: e.target.value })
+          }
+        />
 
-      <button
-        onClick={handleRegister}
-        className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-bold cursor-pointer"
-      >
-        Register
-      </button>
+        <input
+          className="w-full border border-parchment px-3 py-2 rounded mb-3 outline-none focus:border-deep"
+          type="email"
+          placeholder="Email"
+          value={formData.email}
+          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+        />
 
-      <p className="text-center mt-3 text-sm">
-        Already have an account?
-        <Link to="/login" className="text-blue-600">
-          {" "}
-          Login here
-        </Link>
-      </p>
+        <input
+          className="w-full border border-parchment px-3 py-2 rounded mb-3 outline-none focus:border-deep"
+          type="password"
+          placeholder="Password"
+          value={formData.password}
+          onChange={(e) =>
+            setFormData({ ...formData, password: e.target.value })
+          }
+        />
+
+        <input
+          value={formData.phone}
+          onChange={(e) => {
+            if (e.target.value.startsWith("+91 ")) {
+              setFormData({ ...formData, phone: e.target.value });
+            }
+          }}
+          className="w-full border border-parchment px-3 py-2 rounded mb-3 outline-none focus:border-deep"
+          type="tel"
+          maxLength={14}
+          placeholder="+91 Phone Number"
+        />
+
+        <select
+          className="w-full border border-parchment px-3 py-2 rounded mb-3 outline-none focus:border-deep"
+          value={formData.role}
+          onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+        >
+          <option value="candidate">Candidate</option>
+          <option value="recruiter">Recruiter</option>
+        </select>
+
+        <button
+          onClick={handleRegister}
+          className="w-full bg-deep hover:bg-gold hover:text-deep text-cream py-2 rounded font-semibold cursor-pointer transition-colors"
+        >
+          Register
+        </button>
+
+        <p className="text-center mt-4 text-sm text-gray-500">
+          Already have an account?
+          <Link to="/login" className="text-deep font-semibold hover:text-gold">
+            {" "}
+            Login here
+          </Link>
+        </p>
+      </div>
     </div>
   );
 }
