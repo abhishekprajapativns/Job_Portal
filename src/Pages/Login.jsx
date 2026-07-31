@@ -36,39 +36,48 @@ function Login() {
   };
 
   return (
-    <div className="max-w-sm mx-auto mt-20 p-6 border rounded-lg shadow-md">
-      <h1 className="text-2xl font-bold mb-4 text-center">Login</h1>
+    <div className="bg-cream min-h-screen py-16 px-6">
+      <div className="max-w-sm mx-auto bg-white p-8 border border-parchment shadow-sm">
+        <h1 className="font-serif text-2xl font-semibold mb-6 text-center">
+          Login
+        </h1>
 
-      <input
-        className="w-full border px-3 py-2 rounded-lg mb-3 outline-none"
-        type="text"
-        placeholder="Email"
-        value={formData.email}
-        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-      />
+        <input
+          className="w-full border border-parchment px-3 py-2 rounded mb-3 outline-none focus:border-deep"
+          type="text"
+          placeholder="Email"
+          value={formData.email}
+          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+        />
 
-      <input
-        className="w-full border px-3 py-2 rounded-lg mb-3 outline-none"
-        type="password"
-        placeholder="Password"
-        value={formData.password}
-        onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-      />
+        <input
+          className="w-full border border-parchment px-3 py-2 rounded mb-4 outline-none focus:border-deep"
+          type="password"
+          placeholder="Password"
+          value={formData.password}
+          onChange={(e) =>
+            setFormData({ ...formData, password: e.target.value })
+          }
+        />
 
-      <button
-        onClick={handleLogin}
-        className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-bold cursor-pointer"
-      >
-        Login
-      </button>
+        <button
+          onClick={handleLogin}
+          className="w-full bg-deep hover:bg-gold hover:text-deep text-cream py-2 rounded font-semibold cursor-pointer transition-colors"
+        >
+          Login
+        </button>
 
-      <p className="text-center mt-3 text-sm">
-        Don't have an account?
-        <Link to="/register" className="text-blue-600">
-          {" "}
-          Register here
-        </Link>
-      </p>
+        <p className="text-center mt-4 text-sm text-gray-500">
+          Don't have an account?
+          <Link
+            to="/register"
+            className="text-deep font-semibold hover:text-gold"
+          >
+            {" "}
+            Register here
+          </Link>
+        </p>
+      </div>
     </div>
   );
 }
