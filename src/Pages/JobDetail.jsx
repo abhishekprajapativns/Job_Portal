@@ -21,33 +21,54 @@ function JobDetail() {
         email: "rahul@gmail.com",
       })
       .then((res) => alert(res.data.message))
-      .catch((err) => alert("Error applying"));
+      .catch((err) =>
+        alert(
+          err.response?.data?.message ||
+            "Something went wrong. Please check if the server is running.",
+        ),
+      );
   };
 
   return (
-    <div className="max-w-2xl mx-auto mt-10 p-6 border rounded-lg shadow-md">
-      {job ? (
-        <div>
-          <Link to="/findjobs" className="text-blue-600 mb-4 inline-block">
-            ← Back to Jobs
-          </Link>
-          <h1 className="text-2xl font-bold mb-2">{job.title}</h1>
-          <p className="text-gray-500">{job.company}</p>
-          <p className="text-gray-500">{job.location}</p>
-          <p className="text-gray-500">{job.jobType}</p>
-          <p className="text-blue-600 font-semibold mt-2">{job.salary}</p>
-          <p className="mt-4 text-gray-700">{job.description}</p>
+    <div className="bg-cream min-h-screen py-16 px-6">
+      <div className="max-w-2xl mx-auto bg-white border border-parchment p-8">
+        {job ? (
+          <div>
+            <Link
+              to="/findjobs"
+              className="font-mono text-xs text-deep hover:text-gold mb-6 inline-block"
+            >
+              ← Back to Jobs
+            </Link>
+            <h1 className="font-serif text-3xl font-semibold mb-3">
+              {job.title}
+            </h1>
 
-          <button
-            onClick={handleApply}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg mt-4 cursor-pointer"
-          >
-            Apply Now
-          </button>
-        </div>
-      ) : (
-        <p>Loading...</p>
-      )}
+            <div className="flex flex-wrap gap-x-4 gap-y-1 font-mono text-xs text-gray-500 mb-4">
+              <span>{job.company}</span>
+              <span>{job.location}</span>
+              <span>{job.jobType}</span>
+            </div>
+
+            <p className="font-mono text-lg font-semibold text-deep mb-6">
+              {job.salary}
+            </p>
+
+            <p className="text-gray-700 leading-relaxed border-t border-parchment pt-6">
+              {job.description}
+            </p>
+
+            <button
+              onClick={handleApply}
+              className="bg-deep hover:bg-gold hover:text-deep text-cream px-6 py-2 rounded mt-8 font-semibold cursor-pointer transition-colors"
+            >
+              Apply Now
+            </button>
+          </div>
+        ) : (
+          <p className="text-gray-500">Loading...</p>
+        )}
+      </div>
     </div>
   );
 }
