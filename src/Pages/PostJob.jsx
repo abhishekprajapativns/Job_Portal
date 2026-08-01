@@ -27,69 +27,82 @@ function Postjob() {
       alert(res.data.message);
       navigate("/recruiter-dashboard");
     } catch (error) {
-      alert("Error posting job");
+      alert(
+        error.response?.data?.message ||
+          "Something went wrong. Please check if the server is running.",
+      );
     }
   };
   return (
-    <div className="max-w-lg mx-auto mt-10 p-6 border rounded-lg shadow-md">
-      <h1 className="text-2xl font-bold mb-4 text-center">Post a Job</h1>
+    <div className="bg-cream min-h-screen py-16 px-6">
+      <div className="max-w-lg mx-auto bg-white p-8 border border-parchment shadow-sm">
+        <h1 className="font-serif text-2xl font-semibold mb-6 text-center">
+          Post a Job
+        </h1>
 
-      <input
-        className="w-full border px-3 py-2 rounded-lg mb-3 outline-none"
-        type="text"
-        placeholder="Job Title"
-        value={formData.title}
-        onChange={(e) => setformData({ ...formData, title: e.target.value })}
-      />
+        <input
+          className="w-full border border-parchment px-3 py-2 rounded mb-3 outline-none focus:border-deep"
+          type="text"
+          placeholder="Job Title"
+          value={formData.title}
+          onChange={(e) => setformData({ ...formData, title: e.target.value })}
+        />
 
-      <input
-        className="w-full border px-3 py-2 rounded-lg mb-3 outline-none"
-        type="text"
-        placeholder="Company Name"
-        value={formData.company}
-        onChange={(e) => setformData({ ...formData, company: e.target.value })}
-      />
+        <input
+          className="w-full border border-parchment px-3 py-2 rounded mb-3 outline-none focus:border-deep"
+          type="text"
+          placeholder="Company Name"
+          value={formData.company}
+          onChange={(e) =>
+            setformData({ ...formData, company: e.target.value })
+          }
+        />
 
-      <input
-        className="w-full border px-3 py-2 rounded-lg mb-3 outline-none"
-        type="text"
-        placeholder="Location"
-        value={formData.location}
-        onChange={(e) => setformData({ ...formData, location: e.target.value })}
-      />
+        <input
+          className="w-full border border-parchment px-3 py-2 rounded mb-3 outline-none focus:border-deep"
+          type="text"
+          placeholder="Location"
+          value={formData.location}
+          onChange={(e) =>
+            setformData({ ...formData, location: e.target.value })
+          }
+        />
 
-      <input
-        className="w-full border px-3 py-2 rounded-lg mb-3 outline-none"
-        type="text"
-        placeholder="Salary (e.g. 5-8 LPA)"
-        value={formData.salary}
-        onChange={(e) => setformData({ ...formData, salary: e.target.value })}
-      />
+        <input
+          className="w-full border border-parchment px-3 py-2 rounded mb-3 outline-none focus:border-deep"
+          type="text"
+          placeholder="Salary (e.g. 5-8 LPA)"
+          value={formData.salary}
+          onChange={(e) => setformData({ ...formData, salary: e.target.value })}
+        />
 
-      <textarea
-        className="w-full border px-3 py-2 rounded-lg mb-3 outline-none"
-        placeholder="Job Description"
-        value={formData.description}
-        onChange={(e) =>
-          setformData({ ...formData, description: e.target.value })
-        }
-      />
+        <textarea
+          className="w-full border border-parchment px-3 py-2 rounded mb-3 outline-none focus:border-deep"
+          placeholder="Job Description"
+          value={formData.description}
+          onChange={(e) =>
+            setformData({ ...formData, description: e.target.value })
+          }
+        />
 
-      <select
-        className="w-full border px-3 py-2 rounded-lg mb-3 outline-none"
-        value={formData.jobType}
-        onChange={(e) => setformData({ ...formData, jobType: e.target.value })}
-      >
-        <option value="Full Time">Full Time</option>
-        <option value="Part Time">Part Time</option>
-      </select>
+        <select
+          className="w-full border border-parchment px-3 py-2 rounded mb-3 outline-none focus:border-deep"
+          value={formData.jobType}
+          onChange={(e) =>
+            setformData({ ...formData, jobType: e.target.value })
+          }
+        >
+          <option value="Full Time">Full Time</option>
+          <option value="Part Time">Part Time</option>
+        </select>
 
-      <button
-        onClick={handlePostJob}
-        className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-bold cursor-pointer"
-      >
-        Post Job
-      </button>
+        <button
+          onClick={handlePostJob}
+          className="w-full bg-deep hover:bg-gold hover:text-deep text-cream py-2 rounded font-semibold cursor-pointer transition-colors"
+        >
+          Post Job
+        </button>
+      </div>
     </div>
   );
 }
