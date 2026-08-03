@@ -5,7 +5,7 @@ import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import FindJob from "./Pages/FindJob";
 import Footer from "./components/Footer";
-import Dashboard from "./Pages/Dashboard";
+import CandidateDashboard from "./Pages/CandidateDashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
 import JobDetail from "./Pages/JobDetail";
 import RecruiterDashboard from "./Pages/RecruiterDashboard";
@@ -24,7 +24,7 @@ function App() {
           path="/dashboard"
           element={
             <ProtectedRoute>
-              <Dashboard />
+              <CandidateDashboard />
             </ProtectedRoute>
           }
         />
