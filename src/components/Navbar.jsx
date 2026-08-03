@@ -48,8 +48,11 @@ function Navbar() {
                   onClick={() => setShowDropdown(false)}
                   className="block px-4 py-2 hover:bg-parchment"
                 >
-                  Dashboard
+                  {role === "recruiter"
+                    ? "Recruiter Dashboard"
+                    : "Candidate Dashboard"}
                 </Link>
+
                 <button
                   onClick={handleLogout}
                   className="block w-full text-left px-4 py-2 hover:bg-parchment cursor-pointer"
