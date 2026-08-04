@@ -28,7 +28,7 @@ function FindJob() {
     <div className="bg-cream min-h-screen p-6">
       {/* Search bar */}
       <input
-        className="w-full border border-parchment px-3 py-2 rounded mb-4 outline-none focus: border-deep bg-white"
+        className="w-full border border-parchment px-3 py-2 rounded mb-4 outline-none focus:border-deep bg-white"
         type="text"
         placeholder="Search jobs"
         value={search}
