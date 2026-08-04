@@ -25,10 +25,10 @@ function FindJob() {
   });
 
   return (
-    <div className="p-6">
+    <div className="bg-cream min-h-screen p-6">
       {/* Search bar */}
       <input
-        className="w-full border px-3 py-2 rounded-lg mb-4 outline-none"
+        className="w-full border border-parchment px-3 py-2 rounded mb-4 outline-none focus: border-deep bg-white"
         type="text"
         placeholder="Search jobs"
         value={search}
@@ -40,12 +40,13 @@ function FindJob() {
       <div className="flex gap-4">
         {/* Filter Side - Left */}
 
-        <div className="w-1/4 border rounded-lg p-4">
-          <h3 className="font-bold mb-2">Job Type</h3>
+        <div className="w-1/4 border border-parchment rounded p-4 bg-white h-fit">
+          <h3 className="font-serif font-semibold mb-2">Job Type</h3>
 
-          <label className="flex items-center gap-2 mb-2">
+          <label className="flex items-center gap-2 mb-2 text-sm">
             <input
               type="checkbox"
+              className="accent-[#0F2E22]"
               checked={jobType === "Full Time"}
               onChange={() =>
                 setJobType(jobType === "Full Time" ? "" : "Full Time")
@@ -54,9 +55,10 @@ function FindJob() {
             Full Time
           </label>
 
-          <label className="flex items-center gap-2 mb-2">
+          <label className="flex items-center gap-2 mb-2 text-sm">
             <input
               type="checkbox"
+              className="accent-[#0F2E22]"
               checked={jobType === "Part Time"}
               onChange={() =>
                 setJobType(jobType === "Part Time" ? "" : "Part Time")
@@ -65,13 +67,14 @@ function FindJob() {
             Part Time
           </label>
 
-          <h3 className="font-bold mb-2 mt-4">Location</h3>
+          <h3 className="font-serif font-semibold mb-2 mt-4">Location</h3>
 
-          <label className="flex items-center gap-2 mb-2">
-            <input type="checkbox" /> Remote
+          <label className="flex items-center gap-2 mb-2 text-sm">
+            <input type="checkbox" className="accent-[#0F2E22]" /> Remote
           </label>
-          <label className="flex items-center gap-2 mb-2">
-            <input type="checkbox" /> On-Site
+
+          <label className="flex items-center gap-2 mb-2 text-sm">
+            <input type="checkbox" className="accent-[#0F2E22]" /> On-Site
           </label>
         </div>
 
@@ -82,12 +85,17 @@ function FindJob() {
             <div
               key={job._id}
               onClick={() => navigate("/job/" + job._id)}
-              className="border rounded-lg p-4 shadow-sm mb-3 cursor-pointer"
+              className="border border-parchment rounded p-4 mb-3 cursor-pointer bg-white hover:bg-parchment transition-colors"
             >
-              <h2 className="text-lg font-bold">{job.title}</h2>
-              <p className="text-gray-500">{job.company}</p>
-              <p className="text-gray-500">{job.location}</p>
-              <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg mt-2 cursor-pointer">
+              <h2 className="font-serif text-lg font-semibold">{job.title}</h2>
+
+              <p className="font-mono text-xs text-gray-500 mt-1">
+                {job.company}
+              </p>
+
+              <p className="font-mono text-xs text-gray-500">{job.location}</p>
+
+              <button className="bg-deep hover:bg-gold hover:text-deep text-cream px-4 py-2 rounded mt-3 cursor-pointer font-semibold transition-colors">
                 Apply
               </button>
             </div>
