@@ -46,7 +46,7 @@ function Navbar() {
                     role === "recruiter" ? "/recruiter-dashboard" : "/dashboard"
                   }
                   onClick={() => setShowDropdown(false)}
-                  className="block px-4 py-2 hover:bg-parchment"
+                  className="block px-4 py-2 text-deep hover:bg-parchment"
                 >
                   {role === "recruiter"
                     ? "Recruiter Dashboard"
@@ -55,7 +55,7 @@ function Navbar() {
 
                 <button
                   onClick={handleLogout}
-                  className="block w-full text-left px-4 py-2 hover:bg-parchment cursor-pointer"
+                  className="block w-full text-left px-4 py-2 text-deep hover:bg-parchment cursor-pointer"
                 >
                   Logout
                 </button>
