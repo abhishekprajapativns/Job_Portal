@@ -54,4 +54,19 @@ const loginUser = async (req, res) => {
     .json({ message: "Login successfully", token, role: user.role });
 };
 
-module.exports = { registerUser, loginUser };
+/* Get Logged-in User's Profile */
+
+const getMyProfile = async (req, res) => {
+  // Find the user by the id that came from the token.
+  // We use .select("-password") so the password never gets sent back.
+
+  const user = await User.findById(req.userId).select("-password");
+
+  if (!user) {
+    return res.status(404).json({ message: "User not found " });
+  }
+
+  res.status(200).json(user);
+};
+
+module.exports = { registerUser, loginUser, getMyProfile };
