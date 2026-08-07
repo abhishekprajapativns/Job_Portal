@@ -133,6 +133,7 @@ function Home() {
           {categories.map((cat) => (
             <div
               key={cat.name}
+              onClick={() => navigate(`/findjobs?category=${cat.name}`)}
               className="p-6 cursor-pointer hover:bg-parchment transition-colors"
             >
               <div className="font-serif text-lg font-semibold">{cat.name}</div>
