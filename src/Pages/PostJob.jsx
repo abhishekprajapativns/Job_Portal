@@ -11,6 +11,7 @@ function Postjob() {
     salary: "",
     description: "",
     jobType: "Full Time",
+    category: "IT & engineering",
   });
 
   const handlePostJob = async () => {
@@ -94,6 +95,21 @@ function Postjob() {
         >
           <option value="Full Time">Full Time</option>
           <option value="Part Time">Part Time</option>
+        </select>
+
+        <select
+          className="w-full border border-parchment px-3 py-2 rounded mb-3 outline-none focus:border-deep"
+          value={formData.category}
+          onChange={(e) =>
+            setformData({ ...formData, category: e.target.value })
+          }
+        >
+          <option value="IT & engineering">IT & Engineering</option>
+          <option value="Design">Design</option>
+          <option value="Marketing">Marketing</option>
+          <option value="Sales">Sales</option>
+          <option value="HR">HR</option>
+          <option value="Financial">Financial</option>
         </select>
 
         <button
