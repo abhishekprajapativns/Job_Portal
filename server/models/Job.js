@@ -8,6 +8,9 @@ const jobSchema = new mongoose.Schema({
   description: String,
   jobType: String,
   skills: [String],
+
+  category: String,
+
   postedBy: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
