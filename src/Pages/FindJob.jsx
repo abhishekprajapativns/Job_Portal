@@ -7,6 +7,12 @@ function FindJob() {
   const [jobType, setJobType] = useState("");
   const [searchParams] = useSearchParams();
   const [search, setSearch] = useState(searchParams.get("search") || "");
+
+  // Read the category from the URL (e.g. ?category=HR).
+  // If the URL has no category, this will just be an empty string.
+
+  const category = searchParams.get("category") || "";
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,11 +27,24 @@ function FindJob() {
       .toLowerCase()
       .includes(search.toLowerCase());
     const matchesType = jobType === "" || job.jobType === jobType;
-    return matchesSearch && matchesType;
+
+    // A job matches if there's no category filter at all,
+    // OR if the job's own category matches the one from the URL.
+    const matchesCategory = category === "" || job.category === category;
+
+    return matchesSearch && matchesType && matchesCategory;
   });
 
   return (
     <div className="bg-cream min-h-screen p-6">
+      {/* Show which category is active, if any */}
+      {category && (
+        <p className="font-mono text-xs text-gray-500 mb-3">
+          Showing jobs in:{" "}
+          <span className="text-deep font-semibold">{category}</span>
+        </p>
+      )}
+
       {/* Search bar */}
       <input
         className="w-full border border-parchment px-3 py-2 rounded mb-4 outline-none focus:border-deep bg-white"
