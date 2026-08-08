@@ -14,7 +14,8 @@ const getJobById = async (req, res) => {
 };
 
 const createJob = async (req, res) => {
-  const { title, company, location, salary, description, jobType } = req.body;
+  const { title, company, location, salary, description, jobType, category } =
+    req.body;
 
   const job = new Job({
     title,
@@ -23,6 +24,7 @@ const createJob = async (req, res) => {
     salary,
     description,
     jobType,
+    category,
   });
 
   await job.save();
