@@ -1,12 +1,17 @@
 const Application = require("../models/Application");
 
+/* Apply to a Job */
+
+// This route is protected (verifyToken runs first), so we already know who the logged-in user is — it's saved as req.userId.
+
+// We no longer trust name/email from the frontend; we use the real logged-in user's id instead.
+
 const applyJob = async (req, res) => {
-  const { jobId, name, email } = req.body;
+  const { jobId } = req.body;
 
   const application = new Application({
     jobId,
-    name,
-    email,
+    userId: req.userId,
     status: "Pending",
   });
 
@@ -14,4 +19,27 @@ const applyJob = async (req, res) => {
   res.status(201).json({ message: "Application submitted successfully" });
 };
 
-module.exports = applyJob;
+/* Get Logged-in User's Applications */
+
+// Find every application that belongs to this user, and use .populate() to also pull in the actual job details (title, company, location) from the Job model, using the jobId reference.
+
+const getMyApplications = async (req, res) => {
+  const applications = await Application.find({ userId: req.userId }).populate(
+    "jobId",
+    "title company location",
+  );
+
+  // Reshape the data a bit so the frontend gets simple, flat fields like app.title instead of app.jobId.title
+
+  const result = applications.map((app) => ({
+    _id: app._id,
+    title: app.jobId?.title,
+    company: app.jobId?.company,
+    location: app.jobId?.location,
+    status: app.status,
+  }));
+
+  res.status(200).json(result);
+};
+
+module.exports = { applyJob, getMyApplications };
