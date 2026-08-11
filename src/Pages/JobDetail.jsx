@@ -1,10 +1,11 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
 function JobDetail() {
   const { id } = useParams();
   const [job, setJob] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -14,12 +15,23 @@ function JobDetail() {
   }, [id]);
 
   const handleApply = () => {
+    const token = localStorage.getItem("token");
+
+    // If there's no token, the user isn't logged in — send them to login instead of letting the request fail.
+
+    if (!token) {
+      alert("Please login to apply for this job.");
+      navigate("/login");
+      return;
+    }
+
     axios
-      .post(`${import.meta.env.VITE_API_URL}/api/applications`, {
-        jobId: id,
-        name: "Rahul Sharma",
-        email: "rahul@gmail.com",
-      })
+      .post(
+        `${import.meta.env.VITE_API_URL}/api/applications`,
+
+        { jobId: id },
+        { headers: { Authorization: `Bearer ${token}` } },
+      )
       .then((res) => alert(res.data.message))
       .catch((err) =>
         alert(
