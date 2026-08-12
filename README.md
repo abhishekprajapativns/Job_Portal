@@ -135,6 +135,18 @@ The frontend will start on the Vite development server.
 * Advanced job search and filtering
 * Pagination for job listings
 
+
+📸 Screenshots
+
+Add screenshots or a demo GIF of the Home page, Job Listings, and Dashboard here to give visitors a quick preview of the UI.
+
+text
+![Home Page](./screenshots/home.png)
+![Job Listings](./screenshots/jobs.png)
+![Recruiter Dashboard](./screenshots/dashboard.png)
+
+
+
 ## 🌐 Live Demo
 
 **Backend API:** https://job-portal-1p1h.onrender.com  
