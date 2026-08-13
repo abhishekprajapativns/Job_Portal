@@ -8,6 +8,7 @@ const Application = require("../models/Application");
 
 const applyJob = async (req, res) => {
   const { jobId } = req.body;
+  console.log("Applying job:", jobId, "for user:", req.userId);
 
   const application = new Application({
     jobId,
@@ -15,7 +16,9 @@ const applyJob = async (req, res) => {
     status: "Pending",
   });
 
-  await application.save();
+  const saved = await application.save();
+  console.log("Saved application:", saved);
+
   res.status(201).json({ message: "Application submitted successfully" });
 };
 
