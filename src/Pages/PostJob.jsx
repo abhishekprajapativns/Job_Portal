@@ -12,6 +12,7 @@ function Postjob() {
     description: "",
     jobType: "Full Time",
     category: "IT & engineering",
+    skills: "",
   });
 
   const handlePostJob = async () => {
@@ -20,11 +21,20 @@ function Postjob() {
       return;
     }
 
+    const payload = {
+      ...formData,
+      skills: formData.skills
+        .split(",")
+        .map((s) => s.trim())
+        .filter((s) => s !== ""),
+    };
+
     try {
       const res = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/jobs`,
-        formData,
+        payload,
       );
+
       alert(res.data.message);
       navigate("/recruiter-dashboard");
     } catch (error) {
@@ -34,6 +44,7 @@ function Postjob() {
       );
     }
   };
+
   return (
     <div className="bg-cream min-h-screen py-16 px-6">
       <div className="max-w-lg mx-auto bg-white p-8 border border-parchment shadow-sm">
@@ -111,6 +122,14 @@ function Postjob() {
           <option value="HR">HR</option>
           <option value="Financial">Financial</option>
         </select>
+
+        <input
+          className="w-full border border-parchment px-3 py-2 rounded mb-3 outline-none focus:border-deep"
+          type="text"
+          placeholder="Skills (comma separated, e.g. React, Node.js, MongoDB)"
+          value={formData.skills}
+          onChange={(e) => setformData({ ...formData, skills: e.target.value })}
+        />
 
         <button
           onClick={handlePostJob}
