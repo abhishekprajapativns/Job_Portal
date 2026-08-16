@@ -1,6 +1,7 @@
 const {
   applyJob,
   getMyApplications,
+  getRecruiterApplications,
 } = require("../controllers/applicationController");
 
 const verifyToken = require("../middleware/authMiddleware");
@@ -14,5 +15,9 @@ router.post("/", verifyToken, applyJob);
 //Project - only returns applications belonging to the longger-in user
 
 router.get("/my", verifyToken, getMyApplications);
+
+//Project- Recuter views application for all jobs they posted
+
+router.get("/recruiter", verifyToken, getRecruiterApplications);
 
 module.exports = router;
