@@ -34,6 +34,7 @@ const createJob = async (req, res) => {
     jobType,
     category,
     skills,
+    postedBy: req.userId,
   });
 
   await job.save();
