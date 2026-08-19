@@ -2,6 +2,7 @@ const {
   applyJob,
   getMyApplications,
   getRecruiterApplications,
+  updateApplicationStatus,
 } = require("../controllers/applicationController");
 
 const verifyToken = require("../middleware/authMiddleware");
@@ -19,5 +20,9 @@ router.get("/my", verifyToken, getMyApplications);
 //Project- Recuter views application for all jobs they posted
 
 router.get("/recruiter", verifyToken, getRecruiterApplications);
+
+//Project - Recuter update status (Acept/Reject) of an application
+
+router.patch("/:id/status", verifyToken, updateApplicationStatus);
 
 module.exports = router;
