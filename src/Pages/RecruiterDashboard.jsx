@@ -6,26 +6,43 @@ function RecruiterDashboard() {
   const [applications, setApplications] = useState([]);
   const [loading, setloading] = useState(true);
 
-  useEffect(() => {
-    const fetchApplications = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        const res = await axios.get(
-          `${import.meta.env.VITE_API_URL}/api/applications/recruiter`,
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          },
-        );
-        setApplications(res.data);
-      } catch (error) {
-        console.log("Error fetching applications:", error);
-      } finally {
-        setloading(false);
-      }
-    };
+  const fetchApplications = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const res = await axios.get(
+        `${import.meta.env.VITE_API_URL}/api/applications/recruiter`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        },
+      );
+      setApplications(res.data);
+    } catch (error) {
+      console.log("Error fetching applications:", error);
+    } finally {
+      setloading(false);
+    }
+  };
 
+  useEffect(() => {
     fetchApplications();
   }, []);
+
+  const handleStatusChange = async (applicationId, newStatus) => {
+    try {
+      const token = localStorage.getItem("token");
+      await axios.patch(
+        `${import.meta.env.VITE_API_URL}/api/applications/${applicationId}/status`,
+        { status: newStatus },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        },
+      );
+      // status change hone ke baad list ko dobara fetch kar lo taaki latest data dikhe
+      fetchApplications();
+    } catch (error) {
+      alert(error.response?.data?.message || "Something went wrong");
+    }
+  };
 
   return (
     <div className="bg-cream min-h-screen py-16 px-6">
@@ -37,7 +54,7 @@ function RecruiterDashboard() {
 
         <Link
           to="/post-job"
-          className="bg-deep hover:bg-gold hover:text-deep text-cream px-4 py-2 rounded inline-block font-semibold transition-colors"
+          className="bg-deep hover:bg-gold hover:text-deep text-cream px-4 py-2 rounded inline-block font-semibold transition-colors mb-8"
         >
           Post a New Job
         </Link>
@@ -64,6 +81,23 @@ function RecruiterDashboard() {
               <p className="text-sm text-gray-500">{app.candidateEmail}</p>
               <p className="text-sm text-gray-500">{app.candidatePhone}</p>
               <p className="text-sm mt-1">Status: {app.status}</p>
+
+              {app.status === "Pending" && (
+                <div className="mt-3 flex gap-2">
+                  <button
+                    onClick={() => handleStatusChange(app._id, "Accepted")}
+                    className="bg-green-700 hover:bg-green-800 text-white px-3 py-1 rounded text-sm"
+                  >
+                    Accept
+                  </button>
+                  <button
+                    onClick={() => handleStatusChange(app._id, "Rejected")}
+                    className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded text-sm"
+                  >
+                    Reject
+                  </button>
+                </div>
+              )}
             </div>
           ))}
         </div>
