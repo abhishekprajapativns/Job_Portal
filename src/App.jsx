@@ -10,6 +10,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import JobDetail from "./Pages/JobDetail";
 import RecruiterDashboard from "./Pages/RecruiterDashboard";
 import Postjob from "./Pages/PostJob";
+import MyJobs from "./Pages/MyJobs";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path="/job/:id" element={<JobDetail />} />
         <Route path="/recruiter-dashboard" element={<RecruiterDashboard />} />
         <Route path="/post-job" element={<Postjob />} />
+        <Route path="/my-jobs" element={<MyJobs />} />
       </Routes>
 
       <Footer />
