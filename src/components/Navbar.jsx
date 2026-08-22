@@ -30,6 +30,15 @@ function Navbar() {
           Find Job
         </Link>
 
+        {token && role === "recruiter" ? (
+          <Link
+            className="text-cream hover:text-gold transition-colors"
+            to="/my-jobs"
+          >
+            My Jobs
+          </Link>
+        ) : null}
+
         {token ? (
           <div className="relative">
             <button
