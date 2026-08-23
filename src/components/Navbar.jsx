@@ -43,9 +43,9 @@ function Navbar() {
           <div className="relative">
             <button
               onClick={() => setShowDropdown(!showDropdown)}
-              className="text-cream hover:text-gold transition-colors cursor-pointer"
+              className="text-cream hover:text-gold transition-colors cursor-pointer flex items-center gap-1"
             >
-              👤 Account
+              <i className="ti ti-user"></i> Account
             </button>
 
             {showDropdown ? (
