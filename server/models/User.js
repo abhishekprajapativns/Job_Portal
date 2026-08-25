@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema({
   phone: String,
   password: String,
   role: String,
+  resumeUrl: String,
 });
 
 const User = mongoose.model("User", userSchema);
