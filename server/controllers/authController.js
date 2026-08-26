@@ -69,4 +69,29 @@ const getMyProfile = async (req, res) => {
   res.status(200).json(user);
 };
 
-module.exports = { registerUser, loginUser, getMyProfile };
+/* Upload Resume */
+
+// This router is protected AND user multer middleware
+
+const uploadResume = async (req, res) => {
+  if (!req.file) {
+    return res.status(400).json({ message: "No file uploaded" });
+  }
+
+  // req.file.path is the location where multer saved the file
+
+  const resumePath = req.file.path;
+
+  const user = await User.findById(req.userId);
+
+  if (!user) {
+    return res.status(404).json({ message: "User not found" });
+  }
+
+  user.resumeUrl = resumePath;
+  await user.save();
+
+  res.status(200).json({ message: "Resume uploaded successfully" });
+};
+
+module.exports = { registerUser, loginUser, getMyProfile, uploadResume };
