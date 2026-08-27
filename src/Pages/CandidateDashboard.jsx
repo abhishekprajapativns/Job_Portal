@@ -2,33 +2,68 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 function CandidateDashboard() {
-  // Start empty. These will fill up automatically once the backend has the right routes and the user has real data.
-
   const [profile, setProfile] = useState(null);
   const [applications, setApplications] = useState([]);
+  const [resumeFile, setResumeFile] = useState(null);
+  const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     const headers = { Authorization: `Bearer ${token}` };
-
-    // Get logged-in user's profile
 
     axios
       .get(`${import.meta.env.VITE_API_URL}/api/auth/me`, { headers })
       .then((res) => setProfile(res.data))
       .catch((err) => console.log(err));
 
-    // Get logged-in user's applications
     axios
       .get(`${import.meta.env.VITE_API_URL}/api/applications/my`, { headers })
       .then((res) => setApplications(res.data))
       .catch((err) => console.log(err));
   }, []);
 
+  const handleResumeUpload = async () => {
+    if (!resumeFile) {
+      alert("Please select a PDF file first");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("resume", resumeFile);
+
+    try {
+      setUploading(true);
+      const token = localStorage.getItem("token");
+
+      const res = await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/auth/upload-resume`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        },
+      );
+
+      alert(res.data.message);
+
+      const profileRes = await axios.get(
+        `${import.meta.env.VITE_API_URL}/api/auth/me`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        },
+      );
+      setProfile(profileRes.data);
+    } catch (error) {
+      alert(error.response?.data?.message || "Something went wrong");
+    } finally {
+      setUploading(false);
+    }
+  };
+
   return (
     <div className="bg-cream min-h-screen py-16 px-6">
-      {/* Header */}
-
       <div className="bg-deep text-cream px-6 py-12">
         <p className="font-mono text-xs uppercase text-goldlight mb-2">
           Candidate Dashboard
@@ -38,7 +73,6 @@ function CandidateDashboard() {
       </div>
 
       <div className="max-w-3xl mx-auto px-6 py-12">
-        {/* Applied Jobs section */}
         <h2 className="font-serif text-xl font-semibold border-b border-parchment pb-3 mb-6">
           Your Applications ({applications.length})
         </h2>
@@ -65,13 +99,11 @@ function CandidateDashboard() {
           </div>
         )}
 
-        {/* Profile info section */}
         <h2 className="font-serif text-2xl font-semibold border-b border-parchment pb-3 mb-6">
           Profile Info
         </h2>
 
         <div className="border border-parchment bg-white p-4">
-          {" "}
           {profile ? (
             <>
               <p className="text-gray-700">
@@ -80,6 +112,29 @@ function CandidateDashboard() {
 
               <p className="text-gray-500 text-sm"> {profile.email} </p>
               <p className="text-gray-500 text-sm"> {profile.phone} </p>
+
+              <div className="mt-4 pt-4 border-t border-parchment">
+                <p className="text-sm text-gray-700 mb-2">
+                  {profile.resumeUrl
+                    ? "Resume uploaded ✓"
+                    : "No resume uploaded yet"}
+                </p>
+
+                <input
+                  type="file"
+                  accept="application/pdf"
+                  onChange={(e) => setResumeFile(e.target.files[0])}
+                  className="text-sm mb-2"
+                />
+
+                <button
+                  onClick={handleResumeUpload}
+                  disabled={uploading}
+                  className="bg-deep hover:bg-gold hover:text-deep text-cream px-4 py-1.5 rounded text-sm font-semibold transition-colors block"
+                >
+                  {uploading ? "Uploading..." : "Upload Resume"}
+                </button>
+              </div>
             </>
           ) : (
             <p className="text-gray-500">Loading profile... </p>
