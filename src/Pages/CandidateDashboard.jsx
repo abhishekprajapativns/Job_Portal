@@ -124,7 +124,7 @@ function CandidateDashboard() {
                   type="file"
                   accept="application/pdf"
                   onChange={(e) => setResumeFile(e.target.files[0])}
-                  className="text-sm mb-2"
+                  className="text-sm mb-2 block file:mr-3 file:py-1.5 file:px-4 file:rounded file:border-0 file:bg-deep file:text-cream file:font-semibold file:cursor-pointer hover:file:bg-gold hover:file:text-deep file:transition-colors"
                 />
 
                 <button
