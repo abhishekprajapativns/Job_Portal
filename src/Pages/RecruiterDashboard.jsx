@@ -82,6 +82,17 @@ function RecruiterDashboard() {
               <p className="text-sm text-gray-500">{app.candidatePhone}</p>
               <p className="text-sm mt-1">Status: {app.status}</p>
 
+              {app.candidateResumeUrl && (
+                <a
+                  href={`${import.meta.env.VITE_API_URL}/${app.candidateResumeUrl}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-blue-600 hover:underline mt-1 inline-block"
+                >
+                  View Resume
+                </a>
+              )}
+
               {app.status === "Pending" && (
                 <div className="mt-3 flex gap-2">
                   <button
