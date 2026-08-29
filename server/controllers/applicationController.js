@@ -47,7 +47,7 @@ const getRecruiterApplications = async (req, res) => {
 
   const applications = await Application.find({ jobId: { $in: jobIds } })
     .populate("jobId", "title company location")
-    .populate("userId", "firstName lastName email phone");
+    .populate("userId", "firstName lastName email phone resumeUrl");
 
   const result = applications.map((app) => ({
     _id: app._id,
@@ -56,6 +56,7 @@ const getRecruiterApplications = async (req, res) => {
     candidateName: `${app.userId?.firstName || ""} ${app.userId?.lastName || ""}`,
     candidateEmail: app.userId?.email,
     candidatePhone: app.userId?.phone,
+    candidateResumeUrl: app.userId?.resumeUrl,
     status: app.status,
   }));
 
