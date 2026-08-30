@@ -8,6 +8,8 @@ const userSchema = new mongoose.Schema({
   password: String,
   role: String,
   resumeUrl: String,
+  resetToken: String,
+  resetTokenExpiry: Date,
 });
 
 const User = mongoose.model("User", userSchema);
