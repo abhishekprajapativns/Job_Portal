@@ -94,4 +94,69 @@ const uploadResume = async (req, res) => {
   res.status(200).json({ message: "Resume uploaded successfully" });
 };
 
-module.exports = { registerUser, loginUser, getMyProfile, uploadResume };
+/* Forgot Password - Step 1: generate a reset token */
+
+const forgotPassword = async (req, res) => {
+  const { email } = req.body;
+
+  const user = await User.findOne({ email });
+
+  if (!user) {
+    return res
+      .status(404)
+      .json({ message: "No account found with this email" });
+  }
+
+  // create a random token using crypto (built into Node.js, no need to install anything)
+  const crypto = require("crypto");
+  const token = crypto.randomBytes(32).toString("hex");
+
+  // set the token to expire in 15 minutes
+  user.resetToken = token;
+  user.resetTokenExpiry = Date.now() + 15 * 60 * 1000;
+  await user.save();
+
+  // for now, we send the token back directly in the response (instead of emailing it)
+  // this is just for testing - later this would be sent via email instead
+  res.status(200).json({
+    message: "Password reset link generated",
+    resetToken: token,
+  });
+};
+
+/* Reset Password - Step 2: use the token to set a new password */
+
+const resetPassword = async (req, res) => {
+  const { token, newPassword } = req.body;
+
+  const user = await User.findOne({ resetToken: token });
+
+  if (!user) {
+    return res.status(400).json({ message: "Invalid or expired reset token" });
+  }
+
+  // check if the token has expired
+  if (Date.now() > user.resetTokenExpiry) {
+    return res.status(400).json({ message: "Invalid or expired reset token" });
+  }
+
+  const hashedPassword = await bcrypt.hash(newPassword, 10);
+  user.password = hashedPassword;
+
+  // clear the token so it can't be used again
+  user.resetToken = undefined;
+  user.resetTokenExpiry = undefined;
+
+  await user.save();
+
+  res.status(200).json({ message: "Password reset successfully" });
+};
+
+module.exports = {
+  registerUser,
+  loginUser,
+  getMyProfile,
+  uploadResume,
+  forgotPassword,
+  resetPassword,
+};
