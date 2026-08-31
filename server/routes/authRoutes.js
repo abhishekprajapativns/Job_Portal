@@ -3,6 +3,8 @@ const {
   loginUser,
   getMyProfile,
   uploadResume,
+  forgotPassword,
+  resetPassword,
 } = require("../controllers/authController");
 
 const verifyToken = require("../middleware/authMiddleware");
@@ -28,5 +30,8 @@ router.post(
   upload.single("resume"),
   uploadResume,
 );
+
+router.post("/forgot-password", forgotPassword);
+router.post("/reset-password", resetPassword);
 
 module.exports = router;
