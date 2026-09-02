@@ -12,6 +12,7 @@ import RecruiterDashboard from "./Pages/RecruiterDashboard";
 import Postjob from "./Pages/PostJob";
 import MyJobs from "./Pages/MyJobs";
 import EditJob from "./Pages/EditJob";
+import ForgotPassword from "./Pages/ForgotPassword";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         <Route path="/post-job" element={<Postjob />} />
         <Route path="/my-jobs" element={<MyJobs />} />
         <Route path="/edit-job/:id" element={<EditJob />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
       </Routes>
 
       <Footer />
