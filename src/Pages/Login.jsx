@@ -77,6 +77,15 @@ function Login() {
             Register here
           </Link>
         </p>
+
+        <p className="text-center mt-2 text-sm text-gray-500">
+          <Link
+            to="/forgot-password"
+            className="text-deep font-semibold hover:text-gold"
+          >
+            Forgot Password?
+          </Link>
+        </p>
       </div>
     </div>
   );
