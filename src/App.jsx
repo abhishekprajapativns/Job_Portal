@@ -13,6 +13,7 @@ import Postjob from "./Pages/PostJob";
 import MyJobs from "./Pages/MyJobs";
 import EditJob from "./Pages/EditJob";
 import ForgotPassword from "./Pages/ForgotPassword";
+import ResetPassword from "./Pages/ResetPassword";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
         <Route path="/my-jobs" element={<MyJobs />} />
         <Route path="/edit-job/:id" element={<EditJob />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password/:token" element={<ResetPassword />} />
       </Routes>
 
       <Footer />
