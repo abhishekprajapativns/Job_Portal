@@ -5,6 +5,7 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 function FindJob() {
   const [jobs, setjobs] = useState([]);
   const [jobType, setJobType] = useState("");
+  const [location, setLocation] = useState("");
   const [searchParams] = useSearchParams();
   const [search, setSearch] = useState(searchParams.get("search") || "");
 
@@ -32,7 +33,15 @@ function FindJob() {
     // OR if the job's own category matches the one from the URL.
     const matchesCategory = category === "" || job.category === category;
 
-    return matchesSearch && matchesType && matchesCategory;
+    // check if the job's location text contains "remote", or if "On-Site" is selected, match everything that's not remote
+    const matchesLocation =
+      location === "" ||
+      (location === "Remote" &&
+        job.location.toLowerCase().includes("remote")) ||
+      (location === "On-Site" &&
+        !job.location.toLowerCase().includes("remote"));
+
+    return matchesSearch && matchesType && matchesCategory && matchesLocation;
   });
 
   return (
@@ -89,11 +98,27 @@ function FindJob() {
           <h3 className="font-serif font-semibold mb-2 mt-4">Location</h3>
 
           <label className="flex items-center gap-2 mb-2 text-sm">
-            <input type="checkbox" className="accent-[#0F2E22]" /> Remote
+            <input
+              type="checkbox"
+              className="accent-[#0F2E22]"
+              checked={location === "Remote"}
+              onChange={() =>
+                setLocation(location === "Remote" ? "" : "Remote")
+              }
+            />
+            Remote
           </label>
 
           <label className="flex items-center gap-2 mb-2 text-sm">
-            <input type="checkbox" className="accent-[#0F2E22]" /> On-Site
+            <input
+              type="checkbox"
+              className="accent-[#0F2E22]"
+              checked={location === "On-Site"}
+              onChange={() =>
+                setLocation(location === "On-Site" ? "" : "On-Site")
+              }
+            />
+            On-Site
           </label>
         </div>
 
