@@ -13,6 +13,7 @@ function FindJob() {
   // If the URL has no category, this will just be an empty string.
 
   const category = searchParams.get("category") || "";
+  const locationFromUrl = searchParams.get("location") || "";
 
   const navigate = useNavigate();
 
@@ -34,12 +35,19 @@ function FindJob() {
     const matchesCategory = category === "" || job.category === category;
 
     // check if the job's location text contains "remote", or if "On-Site" is selected, match everything that's not remote
-    const matchesLocation =
+
+    const matchesLocationCheckbox =
       location === "" ||
       (location === "Remote" &&
         job.location.toLowerCase().includes("remote")) ||
       (location === "On-Site" &&
         !job.location.toLowerCase().includes("remote"));
+
+    const matchesLocationFromUrl =
+      locationFromUrl === "" ||
+      job.location.toLowerCase().includes(locationFromUrl.toLowerCase());
+
+    const matchesLocation = matchesLocationCheckbox && matchesLocationFromUrl;
 
     return matchesSearch && matchesType && matchesCategory && matchesLocation;
   });
