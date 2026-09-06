@@ -133,25 +133,35 @@ function FindJob() {
         {/* Job Cards - Right */}
 
         <div className="w-3/4">
-          {filteredJobs.map((job) => (
-            <div
-              key={job._id}
-              onClick={() => navigate("/job/" + job._id)}
-              className="border border-parchment rounded p-4 mb-3 cursor-pointer bg-white hover:bg-parchment transition-colors"
-            >
-              <h2 className="font-serif text-lg font-semibold">{job.title}</h2>
+          {filteredJobs.length === 0 ? (
+            <p className="text-gray-500 text-center py-12">
+              No jobs found matching your search. Try adjusting your filters.
+            </p>
+          ) : (
+            filteredJobs.map((job) => (
+              <div
+                key={job._id}
+                onClick={() => navigate("/job/" + job._id)}
+                className="border border-parchment rounded p-4 mb-3 cursor-pointer bg-white hover:bg-parchment transition-colors"
+              >
+                <h2 className="font-serif text-lg font-semibold">
+                  {job.title}
+                </h2>
 
-              <p className="font-mono text-xs text-gray-500 mt-1">
-                {job.company}
-              </p>
+                <p className="font-mono text-xs text-gray-500 mt-1">
+                  {job.company}
+                </p>
 
-              <p className="font-mono text-xs text-gray-500">{job.location}</p>
+                <p className="font-mono text-xs text-gray-500">
+                  {job.location}
+                </p>
 
-              <button className="bg-deep hover:bg-gold hover:text-deep text-cream px-4 py-2 rounded mt-3 cursor-pointer font-semibold transition-colors">
-                Apply
-              </button>
-            </div>
-          ))}
+                <button className="bg-deep hover:bg-gold hover:text-deep text-cream px-4 py-2 rounded mt-3 cursor-pointer font-semibold transition-colors">
+                  Apply
+                </button>
+              </div>
+            ))
+          )}
         </div>
       </div>
     </div>
