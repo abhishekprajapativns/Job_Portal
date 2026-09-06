@@ -28,7 +28,7 @@ function Footer() {
 
       <div className="max-w-5xl mx-auto border-t border-cream/10 mt-8 pt-5">
         <p className="font-mono text-xs text-cream/55">
-          © 2025 Job Portal. All rights reserved.
+          © 2026 Job Portal. All rights reserved.
         </p>
       </div>
     </footer>
