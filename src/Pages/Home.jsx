@@ -159,7 +159,7 @@ function Home() {
           {jobs.slice(0, 4).map((job) => (
             <div
               key={job._id}
-              className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_auto] items-center gap-3 md:gap-5 py-6 border-b border-parchment"
+              className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1fr_auto] items-center gap-3 md:gap-5 py-6 border-b border-parchment"
             >
               <div>
                 <div className="font-serif text-lg font-semibold">
@@ -172,7 +172,13 @@ function Home() {
                 {job.location}
               </div>
 
-              <div className="font-mono text-xs text-gray-500">Full-time</div>
+              <div className="font-mono text-xs text-gray-500">
+                {job.jobType}
+              </div>
+
+              <div className="font-mono text-xs text-deep font-semibold text-right">
+                {job.salary}
+              </div>
 
               <button
                 onClick={() => navigate("/job/" + job._id)}
