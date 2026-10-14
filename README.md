@@ -8,6 +8,8 @@ A full-stack Job Portal web application built with the **MERN stack**. This plat
 - **Backend API:** [Backend API](https://job-portal-1p1h.onrender.com)
 - **GitHub Repository:** [Job_Portal](https://github.com/abhishekprajapativns/Job_Portal)
 
+> **Note:** The backend is hosted on Render's free tier, so the first request may take 30–60 seconds while the server wakes up.
+
 ## 🚀 Features
 
 ### 👨‍💼 Candidate
@@ -26,11 +28,10 @@ A full-stack Job Portal web application built with the **MERN stack**. This plat
 - Create job listings with title, company, location, salary, description, skills, and category
 - View, edit, and delete their own job postings
 - View applications received for their job listings
-- Access candidate contact details and uploaded resumes
-- View and download candidate resumes
+- Access candidate contact details and view or download uploaded resumes
 - Accept or reject applications
 - Request a password reset using a time-limited token
-- Make newly posted jobs available on the candidate job listing page
+- Newly posted jobs appear instantly on the candidate job listing page
 
 ### 🔐 Common Features
 
@@ -68,27 +69,29 @@ A full-stack Job Portal web application built with the **MERN stack**. This plat
 
 ## 📸 Screenshots
 
-Screenshots of the main pages and features of the application.
+### 1. Home
 
-### 1. Find Jobs
+![Home](./screenshots/home.png)
+
+### 2. Find Jobs
 
 Browse available job opportunities and explore relevant job listings.
 
 ![Find Jobs](./screenshots/find-jobs.png)
 
-### 2. Candidate Dashboard
+### 3. Candidate Dashboard
 
 Manage job applications and track their current status.
 
 ![Candidate Dashboard](./screenshots/candidate-dashboard.png)
 
-### 3. Recruiter Dashboard
+### 4. Recruiter Dashboard
 
 Manage job postings and review applications submitted by candidates.
 
 ![Recruiter Dashboard](./screenshots/recruiter-dashboard.png)
 
-### 4. Job Details & Application
+### 5. Job Details & Application
 
 View job descriptions and apply for available positions.
 
@@ -101,6 +104,7 @@ Job_Portal/
 │
 ├── public/                    # Static assets
 ├── screenshots/               # README screenshots
+│   ├── home.png
 │   ├── find-jobs.png
 │   ├── candidate-dashboard.png
 │   ├── recruiter-dashboard.png
@@ -114,20 +118,18 @@ Job_Portal/
 │
 ├── server/
 │   ├── config/                # Database configuration
-│   ├── controllers/            # Application business logic
-│   ├── middleware/             # Authentication and file uploads
-│   ├── models/                 # Mongoose schemas
-│   ├── routes/                 # API route definitions
+│   ├── controllers/           # Application business logic
+│   ├── middleware/            # Authentication and file uploads
+│   ├── models/                # Mongoose schemas
+│   ├── routes/                # API route definitions
 │   └── uploads/
-│       └── resumes/            # Uploaded resumes (gitignored)
+│       └── resumes/           # Uploaded resumes (gitignored)
 │
 ├── .gitignore
 ├── package.json
 ├── README.md
 └── ...
 ```
-
-*Note: The project structure above is illustrative. Adjust folder names and files to match the actual repository.*
 
 ## ⚙️ Installation and Setup
 
@@ -146,14 +148,12 @@ cd Job_Portal
 
 ### 2. Set Up the Backend
 
-Navigate to the backend folder:
-
 ```bash
 cd server
 npm install
 ```
 
-Create a `.env` file inside the `server` folder and add your configuration:
+Create a `.env` file inside the `server` folder (you can copy `.env.example`):
 
 ```env
 MONGO_URI=your_mongodb_connection_string
@@ -161,7 +161,7 @@ JWT_SECRET=your_jwt_secret
 PORT=5000
 ```
 
-Replace the placeholder values with your own configuration. Never commit your actual `.env` file or secret credentials to GitHub.
+Replace the placeholder values with your own. Never commit your actual `.env` file to GitHub.
 
 Start the backend server:
 
@@ -169,7 +169,7 @@ Start the backend server:
 node index.js
 ```
 
-The backend will run on the configured port, provided the database connection and configuration are valid.
+The backend will run on `http://localhost:5000`.
 
 ### 3. Set Up the Frontend
 
@@ -180,26 +180,28 @@ npm install
 npm run dev
 ```
 
-The frontend will run on the Vite development server, typically at:
-
-http://localhost:5173
+The frontend will run at `http://localhost:5173`.
 
 ### 4. Configure the Frontend API URL
 
-Ensure the frontend API configuration points to your local backend during development or to the deployed backend in production.
+Create a `.env` file in the project root and point it to your backend:
 
-For example, if your application supports an environment variable for the API base URL, configure it according to your actual frontend code and deployment settings.
+```env
+# Local development
+VITE_API_URL=http://localhost:5000
+
+# Production
+# VITE_API_URL=https://job-portal-1p1h.onrender.com
+```
 
 ## 🔗 API Endpoints
 
-The following endpoints document the application's API. Verify each route against the backend implementation before relying on this table.
-
 ### Authentication
 
-| Method | Endpoint | Description | Authentication |
+| Method | Endpoint | Description | Auth Required |
 |---|---|---|---|
 | POST | `/api/auth/register` | Register a candidate or recruiter | No |
-| POST | `/api/auth/login` | Log in and receive authentication details | No |
+| POST | `/api/auth/login` | Log in and receive a JWT | No |
 | GET | `/api/auth/me` | Get the logged-in user's profile | Yes |
 | POST | `/api/auth/upload-resume` | Upload a resume | Yes |
 | POST | `/api/auth/forgot-password` | Request a password reset | No |
@@ -207,7 +209,7 @@ The following endpoints document the application's API. Verify each route agains
 
 ### Jobs
 
-| Method | Endpoint | Description | Authentication |
+| Method | Endpoint | Description | Auth Required |
 |---|---|---|---|
 | GET | `/api/jobs` | Retrieve available job listings | No |
 | GET | `/api/jobs/:id` | Retrieve job details | No |
@@ -218,7 +220,7 @@ The following endpoints document the application's API. Verify each route agains
 
 ### Applications
 
-| Method | Endpoint | Description | Authentication |
+| Method | Endpoint | Description | Auth Required |
 |---|---|---|---|
 | POST | `/api/applications` | Apply for a job | Yes |
 | GET | `/api/applications/my` | Retrieve the candidate's applications | Yes |
@@ -253,5 +255,3 @@ Aspiring MERN Stack Developer
 - **GitHub:** [abhishekprajapativns](https://github.com/abhishekprajapativns)
 
 ---
-
-If you find this project useful, consider giving the repository a ⭐ on GitHub.
