@@ -5,6 +5,7 @@ const connectDB = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
 const jobRouter = require("./routes/jobRoutes");
 const applicationRoutes = require("./routes/applicationRoutes");
+const aiRoutes = require("./routes/aiRoutes");
 
 dotenv.config();
 
@@ -21,6 +22,7 @@ app.use("/uploads", express.static("uploads"));
 app.use("/api/auth", authRoutes);
 app.use("/api/jobs", jobRouter);
 app.use("/api/applications", applicationRoutes);
+app.use("/api/ai", aiRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
