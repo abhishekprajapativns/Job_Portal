@@ -66,7 +66,7 @@ function JobDetail() {
               {job.salary}
             </p>
 
-            <p className="text-gray-700 leading-relaxed border-t border-parchment pt-6">
+            <p className="text-gray-700 leading-relaxed whitespace-pre-line border-t border-parchment pt-6">
               {job.description}
             </p>
 
