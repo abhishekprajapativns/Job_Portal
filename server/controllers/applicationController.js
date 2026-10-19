@@ -1,10 +1,24 @@
 const Application = require("../models/Application");
 const Job = require("../models/Job");
+const User = require("../models/User");
 
 /* Apply to a Job */
 
 const applyJob = async (req, res) => {
   const { jobId } = req.body;
+
+  // Only candidates can apply. Look up the logged-in user to check their role.
+  const user = await User.findById(req.userId);
+
+  if (!user) {
+    return res.status(404).json({ message: "User not found" });
+  }
+
+  if (user.role === "recruiter") {
+    return res
+      .status(403)
+      .json({ message: "Recruiters cannot apply for jobs" });
+  }
 
   console.log("Applying job:", jobId, "for user:", req.userId);
 
