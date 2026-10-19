@@ -6,6 +6,7 @@ function JobDetail() {
   const { id } = useParams();
   const [job, setJob] = useState(null);
   const navigate = useNavigate();
+  const role = localStorage.getItem("role");
 
   useEffect(() => {
     axios
@@ -70,12 +71,18 @@ function JobDetail() {
               {job.description}
             </p>
 
-            <button
-              onClick={handleApply}
-              className="bg-deep hover:bg-gold hover:text-deep text-cream px-6 py-2 rounded mt-8 font-semibold cursor-pointer transition-colors"
-            >
-              Apply Now
-            </button>
+            {role === "recruiter" ? (
+              <p className="font-mono text-xs text-gray-500 mt-8">
+                You are logged in as a recruiter, so you can't apply for jobs.
+              </p>
+            ) : (
+              <button
+                onClick={handleApply}
+                className="bg-deep hover:bg-gold hover:text-deep text-cream px-6 py-2 rounded mt-8 font-semibold cursor-pointer transition-colors"
+              >
+                Apply Now
+              </button>
+            )}
           </div>
         ) : (
           <p className="text-gray-500">Loading...</p>
