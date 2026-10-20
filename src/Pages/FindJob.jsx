@@ -17,6 +17,8 @@ function FindJob() {
 
   const navigate = useNavigate();
 
+  const role = localStorage.getItem("role");
+
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_API_URL}/api/jobs`)
@@ -156,9 +158,11 @@ function FindJob() {
                   {job.location}
                 </p>
 
-                <button className="bg-deep hover:bg-gold hover:text-deep text-cream px-4 py-2 rounded mt-3 cursor-pointer font-semibold transition-colors">
-                  Apply
-                </button>
+                {role !== "recruiter" && (
+                  <button className="bg-deep hover:bg-gold hover:text-deep text-cream px-4 py-2 rounded mt-3 cursor-pointer font-semibold transition-colors">
+                    Apply
+                  </button>
+                )}
               </div>
             ))
           )}
