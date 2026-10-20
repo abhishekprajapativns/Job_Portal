@@ -23,12 +23,15 @@ function Navbar() {
         <Link className="text-cream hover:text-gold transition-colors" to="/">
           Home
         </Link>
-        <Link
-          className="text-cream hover:text-gold transition-colors"
-          to="/findjobs"
-        >
-          Find Job
-        </Link>
+
+        {role !== "recruiter" && (
+          <Link
+            className="text-cream hover:text-gold transition-colors"
+            to="/findjobs"
+          >
+            Find Job
+          </Link>
+        )}
 
         {token && role === "recruiter" ? (
           <Link
