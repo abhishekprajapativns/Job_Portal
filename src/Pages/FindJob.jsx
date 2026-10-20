@@ -158,11 +158,9 @@ function FindJob() {
                   {job.location}
                 </p>
 
-                {role !== "recruiter" && (
-                  <button className="bg-deep hover:bg-gold hover:text-deep text-cream px-4 py-2 rounded mt-3 cursor-pointer font-semibold transition-colors">
-                    Apply
-                  </button>
-                )}
+                <button className="bg-deep hover:bg-gold hover:text-deep text-cream px-4 py-2 rounded mt-3 cursor-pointer font-semibold transition-colors">
+                  {role === "recruiter" ? "View" : "Apply"}
+                </button>
               </div>
             ))
           )}
