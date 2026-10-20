@@ -4,6 +4,7 @@ import axios from "axios";
 
 function Home() {
   const navigate = useNavigate();
+  const role = localStorage.getItem("role");
   const [search, setSearch] = useState("");
   const [location, setLocation] = useState("");
   const [jobs, setJobs] = useState([]);
@@ -184,7 +185,7 @@ function Home() {
                 onClick={() => navigate("/job/" + job._id)}
                 className="border border-deep px-4 py-2 text-sm font-semibold hover:bg-deep hover:text-cream transition-colors justify-self-start md:justify-self-auto"
               >
-                Apply
+                {role === "recruiter" ? "View" : "Apply"}
               </button>
             </div>
           ))}
