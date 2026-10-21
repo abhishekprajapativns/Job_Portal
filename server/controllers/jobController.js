@@ -68,10 +68,10 @@ const updateJob = async (req, res) => {
 
   // check if this job actually belong to the logged-in recruiter
 
-  if (job.postedBy.toString() !== req.userId) {
+  if (job.postedBy?.toString() !== req.userId) {
     return res
       .status(403)
-      .json({ message: "you are not allowes to edit this job" });
+      .json({ message: "you are not allowed to edit this job" });
   }
 
   const {
@@ -98,7 +98,7 @@ const updateJob = async (req, res) => {
 
   await job.save();
 
-  res.status(200).json({ message: "Job update successfully" });
+  res.status(200).json({ message: "Job updated successfully" });
 };
 
 /* Delete a job - only the recruiter who posted it can delete it */
@@ -114,7 +114,7 @@ const deleteJob = async (req, res) => {
 
   // check if this job actually belongs to the logged-in recruiter
 
-  if (job.postedBy.toString() !== req.userId) {
+  if (job.postedBy?.toString() !== req.userId) {
     return res
       .status(403)
       .json({ message: "You are not allowed to delete this job" });
@@ -122,7 +122,7 @@ const deleteJob = async (req, res) => {
 
   await job.deleteOne();
 
-  res.status(200).json({ message: "Job delete successfully" });
+  res.status(200).json({ message: "Job deleted successfully" });
 };
 module.exports = {
   getAlljobs,
