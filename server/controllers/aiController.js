@@ -1,9 +1,21 @@
+const User = require("../models/User");
+
 /* Generate a job description using Gemini AI */
 // The frontend sends a job title (and optionally company/location).
 // We build a prompt, send it to Gemini, and return the text it writes.
 // The API key stays here on the backend, so nobody can steal it from the browser.
 
 const generateJobDescription = async (req, res) => {
+  // Only recruiters can use the AI description generator.
+  // verifyToken already gave us req.userId, so we look up that user's role.
+  const user = await User.findById(req.userId);
+
+  if (!user || user.role !== "recruiter") {
+    return res
+      .status(403)
+      .json({ message: "Only recruiters can use this feature" });
+  }
+
   const { title, company, location } = req.body;
 
   // The title is the minimum we need to write a description
