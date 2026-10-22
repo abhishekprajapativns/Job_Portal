@@ -1,4 +1,5 @@
 const Job = require("../models/Job");
+const User = require("../models/User");
 
 /* Get all jobs (public route, no login needed) */
 
@@ -21,6 +22,15 @@ const getJobById = async (req, res) => {
 /*postedBy comes from req.userId (set by verifyToken), not from the frontend */
 
 const createJob = async (req, res) => {
+  // Only recruiters can post jobs
+  const user = await User.findById(req.userId);
+
+  console.log("createJob called by:", req.userId, "role:", user?.role);
+
+  if (!user || user.role !== "recruiter") {
+    return res.status(403).json({ message: "Only recruiters can post jobs" });
+  }
+
   const {
     title,
     company,
