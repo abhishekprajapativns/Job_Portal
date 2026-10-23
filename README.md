@@ -102,32 +102,55 @@ View job descriptions and apply for available positions.
 ```text
 Job_Portal/
 │
-├── public/                    # Static assets
-├── screenshots/               # README screenshots
-│   ├── home.png
-│   ├── find-jobs.png
-│   ├── candidate-dashboard.png
-│   ├── recruiter-dashboard.png
-│   └── job-details.png
+├── public/
+├── screenshots/
 │
 ├── src/
+│   ├── assets/                # Images and static resources
 │   ├── components/            # Reusable UI components
-│   ├── Pages/                 # Application pages
-│   ├── App.jsx                # Route definitions
-│   └── main.jsx               # Application entry point
+│   ├── Pages/
+│   │   ├── CandidateDashboard.jsx
+│   │   ├── EditJob.jsx
+│   │   ├── FindJob.jsx
+│   │   ├── ForgotPassword.jsx
+│   │   ├── Home.jsx
+│   │   ├── JobDetail.jsx
+│   │   ├── Login.jsx
+│   │   ├── MyJobs.jsx
+│   │   ├── PostJob.jsx
+│   │   ├── RecruiterDashboard.jsx
+│   │   ├── Register.jsx
+│   │   └── ResetPassword.jsx
+│   ├── App.jsx
+│   ├── App.css
+│   ├── index.css
+│   └── main.jsx
 │
 ├── server/
-│   ├── config/                # Database configuration
-│   ├── controllers/           # Application business logic
-│   ├── middleware/            # Authentication and file uploads
-│   ├── models/                # Mongoose schemas
-│   ├── routes/                # API route definitions
+│   ├── config/
+│   ├── controllers/
+│   │   ├── aiController.js
+│   │   ├── applicationController.js
+│   │   ├── authController.js
+│   │   └── jobController.js
+│   ├── middleware/
+│   │   ├── authMiddleware.js
+│   │   └── upload.js
+│   ├── models/
+│   │   ├── Application.js
+│   │   ├── Job.js
+│   │   └── User.js
+│   ├── routes/
+│   │   ├── aiRoutes.js
+│   │   ├── applicationRoutes.js
+│   │   ├── authRoutes.js
+│   │   └── jobRoutes.js
 │   └── uploads/
-│       └── resumes/           # Uploaded resumes (gitignored)
+│       └── resumes/
 │
 ├── .gitignore
 ├── package.json
-├── README.md
+└── README.md
 └── ...
 ```
 
